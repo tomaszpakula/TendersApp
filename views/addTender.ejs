@@ -1,63 +1,44 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Tender App</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-  </head>
-  <body>
-    <h1>Add a tender</h1>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/tenders">Current tenders</a></li>
-        <li><a href="/tenders/finished">Finished tenders</a></li>
-        <li><a href="/tenders/add">Add a tender</a></li>
-      </ul>
-    </nav>
-    <main>
-      <form method="POST" action="/tenders/add">
-        <input
-          type="text"
-          name="name"
-          id="tender_name"
-          placeholder="object of tender"
-          required
-        />
-        <input
-          type="text"
-          name="institution"
-          id="tender_institution"
-          placeholder="institution"
-          required
-        />
-        <input
-          type="text"
-          name="description"
-          id="tender_description"
-          placeholder="description"
-          required
-        />
-        <label for="start">Start of tender</label>
-        <input
-          type="datetime-local"
-          name="start"
-          id="tender_start_date"
-          required
-        />
-        <label for="end">End of tender</label>
-        <input type="datetime-local" name="end" id="tender_end_date" required />
-        <input
-          type="number"
-          name="maxBudget"
-          id="tender_max_budget"
-          placeholder="max budget"
-          required
-        />
-        <button type="submit">Add a tender</button>
-      </form>
-      <% if (typeof message != 'undefined') { %>
-        <p><%= message %></p>
-      <% } %>
-    </main>
-  </body>
-</html>
+<h1>Add a tender</h1>
+<form method="POST" action="/tenders/add">
+  <input
+    type="text"
+    name="name"
+    id="tender_name"
+    placeholder="object of tender"
+    required
+  />
+  <input
+    type="text"
+    name="institution"
+    id="tender_institution"
+    placeholder="institution"
+    required
+  />
+  <input
+    type="text"
+    name="description"
+    id="tender_description"
+    placeholder="description"
+    required
+  />
+  <label for="start">Start of tender</label>
+  <input
+    type="datetime-local"
+    name="start"
+    id="tender_start_date"
+    required
+  />
+  <label for="end">End of tender</label>
+  <input type="datetime-local" name="end" id="tender_end_date" required />
+  <input
+    type="number"
+    name="maxBudget"
+    id="tender_max_budget"
+    placeholder="max budget"
+    required
+  />
+  <button type="submit">Add a tender</button>
+</form>
+<% if (typeof message != 'undefined') { %>
+  <p><%= message %></p>
+<% } %>

@@ -1,0 +1,17 @@
+<h1>Finished Tenders</h1>
+<% if (tenders.length > 0) { %>
+    <table>
+        <thead>
+            <th>Ordinal number</th>
+            <th>Title</th>
+        </thead>
+        <% tenders.forEach((tender, index) => { %>
+            <tr>
+                <td><%= index %></td>
+                <td><%= tender.name %></td>
+            </tr>
+        <% }) %>
+        </table>
+<% } else { %> 
+    <p>There is no tenders right now</p>
+<%} %>
