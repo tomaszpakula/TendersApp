@@ -13,6 +13,14 @@ const Offer = sequelize.define(
       type: DataTypes.FLOAT,
       allowNull: false,
     },
+    tenderId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "tenders",
+        key: "id",
+      },
+    },
   },
   {
     tableName: "offers",

@@ -8,7 +8,7 @@
         <% tenders.forEach((tender, index) => { %>
             <tr>
                 <td><%= index %></td>
-                <td><%= tender.name %></td>
+                <td><a href="/tenders/<%= tender.id  %>"><%= tender.name %></a></td>
             </tr>
         <% }) %>
         </table>

@@ -1,0 +1,18 @@
+<form action="/tenders/offer/<%= id %>" method="POST">
+  <input
+    type="text"
+    name="offerName"
+    id="offer_name"
+    placeholder="name of offer"
+    required
+  />
+  <input
+    type="number"
+    name="offerValue"
+    id="offer_value"
+    placeholder="offer value"
+    required
+    min="0"
+  />
+  <button type="submit">Extend an offer</button>
+</form>

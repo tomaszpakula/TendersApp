@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Institution</th>
-    <td>    
+    <td><%= tender.institution %></td>
   </tr>
   <tr>
     <th>Description</th>
@@ -23,28 +23,58 @@
   </tr>
   <tr>
     <th>End Date</th>
-    <td><%= new Date(tender.end).toLocaleDateString('pl-PL', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit'
+    <td>
+        <%= new Date(tender.end).toLocaleDateString('pl-PL', {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit'
         }) %>
     </td>
   </tr>
 </table>
 
-<table>
+<% if (offers.length > 0) { %>
+  <table>
     <thead>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Date</th>
-    </thead>
-    <% offers.forEach(offer => { %>
         <tr>
-            <td><%= offer.name %></td>
-            <td><%= offer.offerValue %></td>
-            <td><%= offer.createdAt %></td>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Date</th>
         </tr>
-    <% }) %>
-</table>
+    </thead>
+    <tbody>
+        <% offers.forEach(offer => { %>
+            <tr>
+                <td><%= offer.name %></td>
+                <td><%= offer.offerValue %></td>
+                <td><%= new Date(offer.createdAt).toLocaleDateString('pl-PL', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                }) %></td>
+            </tr>
+        <% }) %>
+    </tbody>
+  </table>
+<% } else if ( !isCurrent ) { %>
+  <p>Tender is not decided</p>
+<% }
+  else {
+    { %>
+      <p>No offer avaible</p>
+    <% }
+  }
+
+%>
+
+<% if ( isCurrent ) { %>
+    <button><a href="/tenders/offer/<%= tender.id %>">Extend an offer</a></button>
+<% } %>
+
+<% if (created) { %>
+    <p>Offer created successfully</p>
+<% } %>
