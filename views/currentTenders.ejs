@@ -1,33 +1,37 @@
-<h1>Current Tenders</h1>
+<h3 class="text-center py-2">Current Tenders</h3>
 <% if (tenders.length > 0) { %>
-    <table>
-        <thead>
-            <th>Ordinal number</th>
-            <th>Title</th>
-            <th>Start</th>
-            <th>End</th>
-        </thead>
-        <% tenders.forEach((tender, index) => { %>
-            <tr>
-                <td><%= index %></td>
-                <td><a href="/tenders/<%= tender.id  %>"><%= tender.name %></a></td>
-                <td><%= new Date(tender.start).toLocaleDateString('pl-PL', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                    }) %></td>
-                <td><%= new Date(tender.end).toLocaleDateString('pl-PL', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                    }) %></td>
-            </tr>
-        <% }) %>
-        </table>
+    <div class="row justify-content-center">
+        <div class="col-md-3">
+            <table class="table mx-auto">
+                <thead>
+                    <th>Ordinal number</th>
+                    <th>Title</th>
+                    <th>Start</th>
+                    <th>End</th>
+                </thead>
+                <% tenders.forEach((tender, index) => { %>
+                    <tr>
+                        <td><%= index %></td>
+                        <td><a href="/tenders/<%= tender.id  %>"><%= tender.name %></a></td>
+                        <td><%= new Date(tender.start).toLocaleDateString('pl-PL', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                            }) %></td>
+                        <td><%= new Date(tender.end).toLocaleDateString('pl-PL', {
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                            }) %></td>
+                    </tr>
+                <% }) %>
+            </table>
+        </div>
+    </div>
 <% } else { %> 
-    <p>There is no tenders right now</p>
+    <p class="alert alert-info col-12 col-sm-6 col-md-3 text-center mx-auto">There is no tenders right now</p>
 <%} %>

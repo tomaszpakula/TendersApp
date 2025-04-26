@@ -1,8 +1,26 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00B7FF;
+  color: #00b7ff;
+  text-decoration: none;
+}
+
+
+
+p {
+  text-align: justify;
+}
+
+h1,h2,h3{
+  color: var(--bs-primary);
+}
+
+label {
+  font-size: clamp(16px, 4vw, 18px);
+}
+
+table {
+  font-size: clamp(14px, 1.5vw, 16px);
 }

@@ -1,80 +1,96 @@
-<h1>Details of Tender <%= tender.name %></h1>
+<h3 class="py-2 text-center">Details of Tender <%= tender.name %></h3>
 
-<table>
-  <tr>
-    <th>Institution</th>
-    <td><%= tender.institution %></td>
-  </tr>
-  <tr>
-    <th>Description</th>
-    <td><%= tender.description %></td>
-  </tr>
-  <tr>
-    <th>Start Date</th>
-    <td>
-        <%= new Date(tender.start).toLocaleDateString('pl-PL', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit'
-        }) %>
-    </td>
-  </tr>
-  <tr>
-    <th>End Date</th>
-    <td>
-        <%= new Date(tender.end).toLocaleDateString('pl-PL', {
-            year: 'numeric',
-            month: '2-digit',
-            day: '2-digit',
-            hour: '2-digit',
-            minute: '2-digit'
-        }) %>
-    </td>
-  </tr>
-</table>
+<div class="col-12">
+  <div class="col-12 col-sm-6 col-md-3 mx-auto">
+    <table class="table">
+      <tr>
+        <th>Institution</th>
+        <td><%= tender.institution %></td>
+      </tr>
+      <tr>
+        <th>Description</th>
+        <td><%= tender.description %></td>
+      </tr>
+      <tr>
+        <th>Start Date</th>
+        <td>
+            <%= new Date(tender.start).toLocaleDateString('pl-PL', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            }) %>
+        </td>
+      </tr>
+      <tr>
+        <th>End Date</th>
+        <td>
+            <%= new Date(tender.end).toLocaleDateString('pl-PL', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            }) %>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
 
-<% if (offers.length > 0) { %>
-  <table>
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Date</th>
-        </tr>
-    </thead>
-    <tbody>
-        <% offers.forEach(offer => { %>
+<h3 class="py-2 text-center">List of offers</h3>
+<div class="col-12">
+  <div class="col-12 col-sm-6 col-md-3 mx-auto">
+    <% if (offers.length > 0) { %>
+      <table class="table">
+        <thead>
             <tr>
-                <td><%= offer.name %></td>
-                <td><%= offer.offerValue %></td>
-                <td><%= new Date(offer.createdAt).toLocaleDateString('pl-PL', {
-                    year: 'numeric',
-                    month: '2-digit',
-                    day: '2-digit',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                }) %></td>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Date</th>
             </tr>
-        <% }) %>
-    </tbody>
-  </table>
-<% } else if ( !isCurrent ) { %>
-  <p>Tender is not decided</p>
-<% }
-  else {
-    { %>
-      <p>No offer avaible</p>
+        </thead>
+        <tbody>
+            <% offers.forEach(offer => { %>
+                <tr>
+                    <td><%= offer.name %></td>
+                    <td><%= offer.offerValue %></td>
+                    <td><%= new Date(offer.createdAt).toLocaleDateString('pl-PL', {
+                        year: 'numeric',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                    }) %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+      </table>
+    <% } 
+    else if ( !isCurrent ) { %>
+      <p class="alert alert-danger col-12 col-sm-9 text-center mx-auto">Tender is no decided</p>
     <% }
-  }
+    else if (new Date(tender.start) > new Date()){ %>
+      <p class="alert alert-danger col-12 col-sm-9 text-center mx-auto">Tender is not started yet</p>
+    <% }
+    else {
+        { %>
+          <p class="alert alert-info col-12 col-sm-9 text-center mx-auto">There is no offers right now</p>
+        <% }
+      }
+    
+    %>
+    <% if ( isCurrent && new Date(tender.start) <= new Date() ) { %>
+      <div class="text-center">
+        <button class="btn btn-primary"><a class="text-light text-decoration-none" href="/tenders/offer/<%= tender.id %>">Extend an offer</a></button>
+      </div>
+      <% } %>
+  
+  <% if (created) { %>
+      <p class="alert alert-success my-3 text-center">Offer created successfully</p>
+  <% } %>
+  </div>
+</div>
 
-%>
 
-<% if ( isCurrent ) { %>
-    <button><a href="/tenders/offer/<%= tender.id %>">Extend an offer</a></button>
-<% } %>
-
-<% if (created) { %>
-    <p>Offer created successfully</p>
-<% } %>

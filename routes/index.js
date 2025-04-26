@@ -3,7 +3,7 @@ const router = express.Router();
 const { Tender, Offer } = require("../models");
 const { Op } = require("sequelize");
 router.get("/", (req, res) => {
-  res.render("index");
+  res.render("index", { page: "home" });
 });
 
 router.get("/tenders", async (req, res) => {
@@ -15,7 +15,7 @@ router.get("/tenders", async (req, res) => {
         },
       },
     });
-    res.render("currentTenders", { tenders });
+    res.render("currentTenders", { tenders, page: "current" });
   } catch (err) {
     console.error("Could not load targets: ", err);
     res.status(500).send("Server Error");
@@ -31,7 +31,7 @@ router.get("/tenders/finished", async (req, res) => {
         },
       },
     });
-    res.render("finishedTenders", { tenders });
+    res.render("finishedTenders", { tenders, page: "finished" });
   } catch (err) {
     console.error("Could not load targets: ", err);
     res.status(500).send("Server Error");
@@ -39,7 +39,7 @@ router.get("/tenders/finished", async (req, res) => {
 });
 
 router.get("/tenders/add", async (req, res) => {
-  res.render("addTender");
+  res.render("addTender", { page: "add" });
 });
 
 router.post("/tenders/add", async (req, res) => {
@@ -52,7 +52,7 @@ router.post("/tenders/add", async (req, res) => {
     end: new Date(end),
     maxBudget,
   });
-  res.render("addTender", { message: "Added new tender" });
+  res.render("addTender", { message: "Added new tender", page: 'add' });
 });
 
 router.get("/tenders/:id", async (req, res) => {
@@ -76,7 +76,7 @@ router.get("/tenders/:id", async (req, res) => {
     if (!tender) {
       return res.status(404).send("Tender not found");
     }
-    res.render("tenderDetails", { tender, offers, isCurrent, created });
+    res.render("tenderDetails", { tender, offers, isCurrent, created, page : 'tender' });
   } catch (err) {
     console.error("Error fetching tender:", err);
     res.status(500).send("Server Error");
@@ -85,7 +85,7 @@ router.get("/tenders/:id", async (req, res) => {
 
 router.get("/tenders/offer/:id", async (req, res) => {
   const { id } = req.params;
-  res.render("addOffer", { id });
+  res.render("addOffer", { id, page: 'addOffer' });
 });
 
 router.post("/tenders/offer/:id", async (req, res) => {
