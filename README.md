@@ -20,7 +20,7 @@
 * Tender description
 * Institution
 * Button **extend an offer** only for current tenders
-* Sorted list of offers (by price) and filtered: only offer not exceeding a budget (if offer list empty and tender is finished: **tender is not decided**)
+* Sorted list of offers (by price) and filtered: only offer not exceeding a budget (if offer list empty and tender is finished: **tender is not decided**, if not started then information that tender has not start yet)
 
 ✅ **GET /tenders/offer/id** - contains form with:
 * name (type : text)
