@@ -1,5 +1,8 @@
 # TendersApp
 
+To start an app:
+**npm run dev**
+
 **Endpoints**
 
 ✅ **GET /** - main site containing:
