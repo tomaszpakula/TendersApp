@@ -1,5 +1,8 @@
 # TendersApp
 
+[![Frontend](https://img.shields.io/badge/Frontend-Ejs-blue)](https://reactjs.org)
+[![Backend](https://img.shields.io/badge/Backend-Express.js-9cf)](https://go.dev)
+
 To start an app:
 **npm run dev**
 
@@ -44,3 +47,14 @@ To start an app:
 
 ✅ **POST /tenders/add** - a new tender to database
 
+## **Demo**
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+![alt text](image-4.png)
